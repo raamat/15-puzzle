@@ -1,12 +1,12 @@
 {
-	"name": "fifteen_start",
+	"name": "15-puzzle",
 	"version": "0.0.1",
-	"description": "fifteen_start",
+	"description": "15-puzzle",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:liveldi/lab.webelart.git"
+		"url": "git@github.com:raamat/15-puzzle.git"
 	},
-	"author": "Elena Litvinova",
+	"author": "",
 	"license": "ISC",
 	"engines": {
 		"node": ">=10",

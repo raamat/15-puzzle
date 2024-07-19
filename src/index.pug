@@ -2,9 +2,18 @@ doctype html
 html(lang="ru") 
     head
         meta(charset="utf-8")
-        title Fifteen
+        title 15 Puzzle
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet" href="/css/reset.css")
         link(rel="stylesheet" href="/css/index.css")
     body
-        script(src="/js/index.js")
+        - var values = new Array(16).fill().map((item, index) => ++index);
+        script(src="/js/index.js" defer)
+        .page
+            h1 Игра "Пятнашки"
+            .puzzle
+                each val in values
+                    button.item
+                        span.itemVal= val
+            button.button Перемешать        
+
