@@ -8,6 +8,7 @@
 - [Pug](https://pugjs.org/) — шаблонизатор и HTML-препроцессор
 - [Stylus](https://stylus-lang.com/) — CSS-препроцессор
 - [Gulp](https://gulpjs.com/) — менеджер задач
+- [dataset](https://doka.guide/js/element-dataset/) — cвойство dataset позволяет считывать или устанавливать любые дата-атрибуты на HTML-элементе
 
 ## Установка и запуск проекта
 

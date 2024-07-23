@@ -13,7 +13,8 @@ html(lang="ru")
             h1 Игра "Пятнашки"
             .puzzle
                 each val in values
-                    button.item
+                    button.item(data-matrix-id=val)
                         span.itemVal= val
-            button.button Перемешать        
+            button.button Перемешать
+
 
