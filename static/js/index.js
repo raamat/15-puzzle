@@ -1,6 +1,5 @@
 const containerNode = document.querySelector(".puzzle");
 const itemNodes = Array.from(containerNode.querySelectorAll(".item"));
-// const mixButton = document.querySelector(".button");
 const countItems = 16;
 
 if (itemNodes.length !== countItems) {
@@ -37,6 +36,48 @@ containerNode.addEventListener("click", (event) => {
     swap(blankCoords, buttonCoords, matrix);
     setPositionItems(matrix);
   }
+});
+
+/** 4. Change position by arrows */
+window.addEventListener("keydown", (event) => {
+  if (!event.key.includes("Arrow")) {
+    return;
+  }
+
+  const blankCoords = findCoordinatesByNumber(blankNumber, matrix);
+  const buttonCoords = {
+    x: blankCoords.x,
+    y: blankCoords.y,
+  };
+  const direction = event.key.split("Arrow")[1].toLowerCase();
+  const maxIndexMatrix = matrix.length;
+
+  switch (direction) {
+    case "up":
+      buttonCoords.y += 1;
+      break;
+    case "down":
+      buttonCoords.y -= 1;
+      break;
+    case "left":
+      buttonCoords.x += 1;
+      break;
+    case "right":
+      buttonCoords.x -= 1;
+      break;
+  }
+
+  if (
+    buttonCoords.y >= maxIndexMatrix ||
+    buttonCoords.y < 0 ||
+    buttonCoords.x >= maxIndexMatrix ||
+    buttonCoords.x < 0
+  ) {
+    return;
+  }
+
+  swap(blankCoords, buttonCoords, matrix);
+  setPositionItems(matrix);
 });
 
 function getMatrix(arr) {
