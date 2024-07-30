@@ -80,6 +80,10 @@ window.addEventListener("keydown", (event) => {
   setPositionItems(matrix);
 });
 
+/**
+ * Helpers
+ */
+
 function getMatrix(arr) {
   const matrix = [[], [], [], []];
   let y = 0;
@@ -144,4 +148,31 @@ function swap(coords1, coords2, matrix) {
   const coords1Number = matrix[coords1.y][coords1.x];
   matrix[coords1.y][coords1.x] = matrix[coords2.y][coords2.x];
   matrix[coords2.y][coords2.x] = coords1Number;
+
+  if (isWon(matrix)) {
+    addWonClass();
+  }
+}
+
+const winFlatArr = new Array(16).fill(0).map((_item, i) => i + 1);
+function isWon(matrix) {
+  const flatMatrix = matrix.flat();
+  for (let i = 0; i < winFlatArr.length; i++) {
+    if (flatMatrix[i] !== winFlatArr[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+const wonClass = "puzzleWon";
+function addWonClass() {
+  setTimeout(() => {
+    containerNode.classList.add(wonClass);
+
+    setTimeout(() => {
+      containerNode.classList.remove(wonClass);
+    }, 1000);
+  }, 200);
 }
