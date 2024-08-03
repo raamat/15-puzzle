@@ -13,10 +13,10 @@ setPositionItems(matrix);
 
 /** 2. Shuffle */
 document.querySelector("#shuffle").addEventListener("click", () => {
-  const flatMatrix = matrix.flat();
-  const shuffledArray = shuffleArray(flatMatrix);
-  matrix = getMatrix(shuffledArray);
-  setPositionItems(matrix);
+  for (i = 0; i < 1000; i++) {
+    randomSwap(matrix);
+    setPositionItems(matrix);
+  }
 });
 
 /** 3. Change position by click */
@@ -83,6 +83,32 @@ window.addEventListener("keydown", (event) => {
 /**
  * Helpers
  */
+
+function randomSwap(matrix) {
+  const blankCoords = findCoordinatesByNumber(blankNumber, matrix);
+  const validCoords = findValidCoords({
+    blankCoords,
+    matrix,
+  });
+
+  const swapCoords =
+    validCoords[Math.floor(Math.random() * validCoords.length)];
+  swap(blankCoords, swapCoords, matrix);
+}
+
+function findValidCoords({ blankCoords, matrix }) {
+  const validCoords = [];
+
+  for (let y = 0; y < matrix.length; y++) {
+    for (let x = 0; x < matrix[y].length; x++) {
+      if (isValidForSwap({ x, y }, blankCoords)) {
+        validCoords.push({ x, y });
+      }
+    }
+  }
+
+  return validCoords;
+}
 
 function getMatrix(arr) {
   const matrix = [[], [], [], []];
